@@ -1,0 +1,54 @@
+package com.wisnu.creditsimulator.model;
+
+import java.math.BigDecimal;
+import java.util.Objects;
+
+public abstract class Vehicle {
+
+    private final VehicleCondition condition;
+    private final int year;
+
+    protected Vehicle(VehicleCondition condition, int year) {
+        this.condition = Objects.requireNonNull(condition, "condition");
+        this.year = year;
+    }
+
+    public abstract VehicleType type();
+
+    /** Interest rate applied in the first year of the loan. */
+    public abstract BigDecimal baseInterestRate();
+
+    public VehicleCondition condition() {
+        return condition;
+    }
+
+    public int year() {
+        return year;
+    }
+
+    public BigDecimal minimumDownPaymentRatio() {
+        return condition.minimumDownPaymentRatio();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Vehicle)) {
+            return false;
+        }
+        Vehicle that = (Vehicle) other;
+        return type() == that.type() && condition == that.condition && year == that.year;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type(), condition, year);
+    }
+
+    @Override
+    public String toString() {
+        return type().displayName() + " " + condition.displayName() + " " + year;
+    }
+}
