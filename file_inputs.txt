@@ -1,0 +1,29 @@
+# Sample input for: ./credit_simulator file_inputs.txt
+# One command or answer per line. Empty lines and lines starting with '#' are ignored.
+
+show
+
+# Same case as docs/Rumus.xlsx: Mobil, price 100,000,000, DP 25%, 3 years
+calc
+Mobil
+Bekas
+2020
+100000000
+3
+25000000
+sheet save mobil-bekas
+
+# Motor bekas, 2 years
+calc
+motor
+BEKAS
+2019
+20000000
+2
+5000000
+sheet save motor-bekas
+
+sheet list
+sheet switch mobil-bekas
+view
+exit
